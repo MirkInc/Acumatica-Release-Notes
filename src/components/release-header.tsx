@@ -1,4 +1,5 @@
 import type { Product, Release } from "@/lib/releases";
+import { ShareMenu } from "@/components/share-menu";
 
 export function ReleaseHeader({
   product,
@@ -22,23 +23,26 @@ export function ReleaseHeader({
             Release {release.version}
           </h2>
         </div>
-        <div className="grid gap-3 text-sm text-slate-600 sm:grid-cols-2 lg:min-w-[360px]">
-          <div className="rounded-md border border-slate-200 bg-slate-50 px-4 py-3">
-            <span className="block text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
-              Current
-            </span>
-            <span className="mt-1 block font-semibold text-slate-950">
-              {release.version}
-            </span>
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-start">
+          <div className="grid gap-3 text-sm text-slate-600 sm:grid-cols-2 lg:min-w-[360px]">
+            <div className="rounded-md border border-slate-200 bg-slate-50 px-4 py-3">
+              <span className="block text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
+                Current
+              </span>
+              <span className="mt-1 block font-semibold text-slate-950">
+                {release.version}
+              </span>
+            </div>
+            <div className="rounded-md border border-teal-200 bg-teal-50 px-4 py-3">
+              <span className="block text-xs font-semibold uppercase tracking-[0.12em] text-teal-700">
+                Latest Available
+              </span>
+              <span className="mt-1 block font-semibold text-slate-950">
+                {latestRelease?.version ?? "No releases"}
+              </span>
+            </div>
           </div>
-          <div className="rounded-md border border-teal-200 bg-teal-50 px-4 py-3">
-            <span className="block text-xs font-semibold uppercase tracking-[0.12em] text-teal-700">
-              Latest Available
-            </span>
-            <span className="mt-1 block font-semibold text-slate-950">
-              {latestRelease?.version ?? "No releases"}
-            </span>
-          </div>
+          <ShareMenu />
         </div>
       </div>
     </header>

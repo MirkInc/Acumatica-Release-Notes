@@ -154,6 +154,12 @@ Include:
 - Configuration changes and feature flags.
 - Code comparison summaries: insertions, deletions, changed files, artifact size changes.
 
+Exclude non-package workspace artifacts from file comparisons and counts:
+
+- `.vs/` or `.vs\` Visual Studio workspace files, including `.suo`, `DocumentLayout.json`, `FileContentIndex`, `CopilotIndices`, and `.vsidx` files.
+- `.claude/` or `.claude\` local agent/editor settings.
+- Generated build output and compiler caches, including `obj/Debug`, `obj/Release`, nested `bin/Debug`, nested `bin/Release`, `.pdb`, `.cache`, generated `.NETFramework,*AssemblyAttributes.cs`, `FileListAbsolute.txt`, and `CoreCompileInputs` files.
+
 Use tables for schema changes:
 
 ```md

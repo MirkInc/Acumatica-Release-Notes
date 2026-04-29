@@ -123,3 +123,48 @@ a {
     font-size: 0.96rem;
   }
 }
+
+@media print {
+  body {
+    background: #ffffff;
+  }
+
+  aside,
+  .print\:hidden {
+    display: none !important;
+  }
+
+  main {
+    display: block !important;
+    min-height: auto !important;
+  }
+
+  section {
+    min-width: 0 !important;
+  }
+
+  header {
+    position: static !important;
+    border-bottom: 1px solid #d9e0ea !important;
+    background: #ffffff !important;
+    padding: 0 0 1rem !important;
+  }
+
+  header > div,
+  article {
+    max-width: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  article {
+    padding-top: 1rem !important;
+    padding-bottom: 0 !important;
+  }
+
+  .release-markdown {
+    border: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+}

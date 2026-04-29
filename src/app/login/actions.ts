@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import {
   createSessionToken,
   isValidPassword,
+  SESSION_MAX_AGE_SECONDS,
   SESSION_COOKIE,
 } from "@/lib/session";
 import { getSafeRedirectPath } from "@/lib/routes";
@@ -29,6 +30,7 @@ export async function login(
   const cookieStore = await cookies();
   cookieStore.set(SESSION_COOKIE, createSessionToken(), {
     httpOnly: true,
+    maxAge: SESSION_MAX_AGE_SECONDS,
     sameSite: "lax",
     secure: process.env.NODE_ENV === "production",
   });
