@@ -2,6 +2,7 @@ import { createHmac, timingSafeEqual } from "node:crypto";
 import { cookies } from "next/headers";
 
 export const SESSION_COOKIE = "release_notes_session";
+export const SESSION_MAX_AGE_SECONDS = 60 * 60 * 24 * 30;
 
 function getValidPasswords() {
   return new Set(
