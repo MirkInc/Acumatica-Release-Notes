@@ -3,6 +3,10 @@ import path from "node:path";
 import matter from "gray-matter";
 
 const productsDirectory = path.join(process.cwd(), "content", "products");
+const releaseIdentifierCollator = new Intl.Collator(undefined, {
+  numeric: true,
+  sensitivity: "base",
+});
 
 export type Product = {
   name: string;
@@ -86,8 +90,16 @@ function normalizeRelease(productSlug: string, fileName: string): Release {
 }
 
 function sortByNewestRelease(left: Release, right: Release) {
-  return (
-    new Date(right.releasedAt).getTime() - new Date(left.releasedAt).getTime()
+  const releasedAtComparison =
+    new Date(right.releasedAt).getTime() - new Date(left.releasedAt).getTime();
+
+  if (releasedAtComparison !== 0) {
+    return releasedAtComparison;
+  }
+
+  return releaseIdentifierCollator.compare(
+    right.version || right.slug,
+    left.version || left.slug,
   );
 }
 
