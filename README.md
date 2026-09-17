@@ -4,6 +4,8 @@ Password-protected Next.js release notes viewer for multiple products, including
 
 ## Local Development
 
+Use Node.js 24, matching the GitHub Actions workflows.
+
 ```bash
 npm install
 npm run dev
@@ -73,6 +75,16 @@ Reusable release-note authoring docs live in `docs/`:
 - [Release Notes Documentation Guidelines](docs/release-notes-guidelines.md)
 
 Use these when creating new release notes for Acumatica MIRK.Customizations, Rental360, or future products.
+
+## Automated Dependency Fixes
+
+The [NPM Audit Fix workflow](.github/workflows/npm-audit-fix.yml) runs daily at 00:00 UTC or manually from **Actions > NPM Audit Fix > Run workflow** once it is on the default branch.
+
+It installs dependencies, applies compatible audit fixes, and checks lint, optional tests, the production build, and types before opening or updating `chore/npm-audit-fix`. PRs contain only `package.json` and `package-lock.json` changes and use the `dependencies` and `security` labels. The action skips creating a PR when there is no diff and cleans up obsolete branches on later runs.
+
+Set the Actions secret `NPM_AUDIT_FIX_TOKEN` to a fine-grained PAT with **Contents: Read and write** and **Pull requests: Read and write** for **MirkInc/Acumatica-Release-Notes**. A token scoped only to another repository will not work here. Keep the token valid and approved by the organization if required; never commit its value. Using the PAT lets the generated PR trigger the existing CI workflows.
+
+Run the same fix locally with `npm run audit-fix`. It uses `npm audit fix --audit-level=none` without `--force`: unresolved vulnerabilities remain in the report for manual review, while available fixes can still become a PR. Installation failures and failed validation checks stop the workflow.
 
 ## Deployment
 
