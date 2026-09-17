@@ -6,6 +6,8 @@ Password-protected Next.js release notes viewer for multiple products, including
 
 Use Node.js 24, matching the GitHub Actions workflows.
 
+ESLint 10 uses `@eslint/compat` in `eslint.config.mjs` to preserve Next.js's lint rules while its bundled plugins still call removed APIs such as `context.getFilename()`. Remove the compatibility wrapper when all bundled plugins support ESLint 10 natively.
+
 ```bash
 npm install
 npm run dev
