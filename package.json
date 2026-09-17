@@ -21,12 +21,13 @@
     "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
+    "@eslint/compat": "^2.1.1",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^26",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@typescript/native": "npm:typescript@^7.0.2",
-    "eslint": "^9",
+    "eslint": "^10",
     "eslint-config-next": "^16.3.5",
     "tailwindcss": "^4.1.17",
     "typescript": "npm:@typescript/typescript6@^6.0.2"
