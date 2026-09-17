@@ -70,7 +70,16 @@ npm install
 npm run dev
 npm run lint
 npm run build
+npm run audit-fix
 ```
+
+## Automation Workflows
+
+- `.github/workflows/npm-audit-fix.yml` runs daily at 00:00 UTC and can be started manually from Actions > NPM Audit Fix > Run workflow. It uses Node.js 24, runs `npm ci` and `npm run audit-fix`, validates lint, optional tests, build, and types, then creates or updates `chore/npm-audit-fix` against the default branch. Only `package.json` and `package-lock.json` are committed.
+- `npm run audit-fix` runs `npm audit fix --audit-level=none`. Compatible fixes are applied without `--force`; remaining vulnerabilities stay visible in the log without blocking a PR containing partial fixes. Installation and validation failures still stop the workflow.
+- Required credential: the `NPM_AUDIT_FIX_TOKEN` Actions secret must contain a PAT authorized for `MirkInc/Acumatica-Release-Notes` with Contents and Pull requests read/write permissions. A token limited to another repository cannot be used. Do not commit the token. Maintain its expiry and any required organization approval.
+- Automated PRs use the `dependencies` and `security` repository labels. The PR action handles change detection and removes obsolete branches on subsequent successful runs.
+- `.github/workflows/tests.yml` uses Node.js 24 for pull-request and push validation.
 
 ## Configuration
 
