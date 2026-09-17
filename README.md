@@ -6,6 +6,8 @@ Password-protected Next.js release notes viewer for multiple products, including
 
 Use Node.js 24, matching the GitHub Actions workflows.
 
+TypeScript runs side by side: `@typescript/native` provides TypeScript 7's `tsc` for `npm run typecheck`, while the `typescript` alias provides the TypeScript 6 compiler API required by Next.js builds and typescript-eslint. Keep both aliases until those tools support the native compiler API. This follows [Microsoft's TypeScript migration guidance](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/#running-side-by-side-with-typescript-6.0).
+
 ```bash
 npm install
 npm run dev
